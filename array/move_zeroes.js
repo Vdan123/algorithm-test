@@ -10,15 +10,29 @@
  *
  * 输入: nums = [0]
  * 输出: [0]
+ * 时间复杂度是 O(n)
  * **/
 
 const moveZeroes = (nums) => {
-	let j = 0;
-	for(let i = 0; i < nums.length; i++) {
-		if(nums[i]) {
-			debugger
-			[nums[j], nums[i]] = [nums[i], nums[j]]
-			j += 1
+	// 思路：双指针，一个指针用来遍历数组，另一个指针用来记录非零元素的位置
+	// let j = 0;
+	// for(let i = 0; i < nums.length; i++) {
+	// 	if(nums[i]) {
+	// 		debugger
+	// 		[nums[j], nums[i]] = [nums[i], nums[j]]
+	// 		j += 1
+	// 	}
+	// }
+
+	// 思路2：双指针，一个指针用来遍历数组，另一个指针用来记录0的个数
+	let j = 0
+	debugger
+	for (let i = 0; i < nums.length; i++) {
+		if(nums[i] === 0) {
+			j++
+		}
+		if(nums[i] > 0) {
+			[nums[i], nums[i-j]] = [nums[i-j], nums[i]]
 		}
 	}
 	return nums
